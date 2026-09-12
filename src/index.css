@@ -1,0 +1,276 @@
+@import 'aos/dist/aos.css';
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+@import 'swiper/css/navigation';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   GLOBAL
+   ============================================================ */
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background-color: #0a0a0a;
+  color: #f5f5f5;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+@media (max-width: 768px) { body { cursor: auto; } }
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #e0102b; border-radius: 8px; }
+::selection { background: #e0102b; color: #fff; }
+
+/* ============================================================
+   TYPOGRAPHY
+   ============================================================ */
+h1, h2, h3, h4 { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.02em; }
+.font-display { font-family: 'Anton', sans-serif; }
+
+/* ============================================================
+   REUSABLE COMPONENTS
+   ============================================================ */
+.section-padding { @apply px-6 md:px-12 lg:px-20 py-20 md:py-28; }
+.section-eyebrow { @apply inline-block text-gym-red text-sm md:text-base font-bold tracking-[0.35em] uppercase mb-4; }
+.section-title { @apply font-heading text-4xl md:text-6xl uppercase text-gym-white leading-[0.95]; }
+
+.glass {
+  background: rgba(30, 30, 30, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn-primary {
+  @apply relative overflow-hidden inline-flex items-center justify-center gap-2 bg-red-gradient text-white font-bold uppercase tracking-wider text-sm px-8 py-4 rounded-full transition-all duration-300;
+  box-shadow: 0 4px 15px rgba(224,16,43,0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(224,16,43,0.5);
+}
+.btn-primary:active {
+  transform: translateY(2px) scale(0.96);
+  box-shadow: 0 2px 10px rgba(224,16,43,0.3);
+}
+
+.btn-outline {
+  @apply relative overflow-hidden inline-flex items-center justify-center gap-2 border-2 border-gym-white/30 text-gym-white font-bold uppercase tracking-wider text-sm px-8 py-4 rounded-full transition-all duration-300;
+}
+.btn-outline:hover {
+  @apply border-gym-red text-gym-red;
+  background-color: rgba(224,16,43,0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(224,16,43,0.15);
+}
+.btn-outline:active {
+  transform: translateY(2px) scale(0.96);
+  box-shadow: 0 2px 10px rgba(224,16,43,0.1);
+  background-color: rgba(224,16,43,0.1);
+}
+
+/* Beautiful Premium Ripple Effect for Buttons */
+.btn-primary::after,
+.btn-outline::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.7) 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+.btn-outline::after {
+  background-image: radial-gradient(circle, rgba(224,16,43,0.5) 10%, transparent 10.01%);
+}
+
+.btn-primary:active::after,
+.btn-outline:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+.gradient-border-card {
+  position: relative;
+  border-radius: 1.25rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(224,16,43,0.6), rgba(255,255,255,0.05) 40%, rgba(224,16,43,0.15));
+}
+.gradient-border-card > div {
+  border-radius: 1.25rem;
+  background: #141414;
+  height: 100%;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+   ============================================================ */
+.custom-cursor {
+  position: fixed; top: 0; left: 0;
+  width: 24px; height: 24px;
+  border: 2px solid rgb(var(--gym-red));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  mix-blend-mode: difference;
+}
+html.light .custom-cursor {
+  mix-blend-mode: normal;
+}
+.custom-cursor-dot {
+  position: fixed; top: 0; left: 0;
+  width: 5px; height: 5px;
+  background: rgb(var(--gym-red));
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+}
+html.light .custom-cursor-dot {
+  mix-blend-mode: normal;
+}
+
+/* ============================================================
+   LOADING SCREEN
+   ============================================================ */
+.loader-bar { height: 3px; background: linear-gradient(90deg, #e0102b, #a50d21); }
+
+/* ============================================================
+   SCROLL PROGRESS
+   ============================================================ */
+.scroll-progress {
+  position: fixed; top: 0; left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e0102b, #f5f5f5);
+  z-index: 60;
+  transform-origin: 0%;
+}
+/* ============================================================
+   MISC UTILITIES
+   ============================================================ */
+/* Hide scrollbar but keep scroll functionality */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+/* ---- SWIPER PAGINATION DOTS ---- */
+html.light .swiper-pagination-bullet { background: #111111 !important; }
+
+/* ---- FAQ ACCORDIONS ---- */
+html.light [class*="border-white\/10"].rounded-lg {
+  border-color: rgba(0,0,0,0.1) !important;
+}
+
+/* ---- COMPARISON TABLE ---- */
+html.light table { background-color: #f0f0f0 !important; }
+html.light thead tr { background-color: #e4e4e4 !important; }
+html.light tbody tr:nth-child(odd) { background-color: #f5f5f5 !important; }
+html.light tbody tr:nth-child(even) { background-color: #ebebeb !important; }
+
+/* ============================================================
+   ☀️  LIGHT MODE OVERRIDES
+   ============================================================ */
+
+html.light * {
+  transition: background-color 0.35s ease, color 0.35s ease, border-color 0.35s ease !important;
+}
+html.light body {
+  background-color: #f2f2f2 !important;
+  color: #111111 !important;
+}
+
+/* ---- BACKGROUNDS ---- */
+html.light [class*="bg-gym-black"]     { background-color: #f2f2f2 !important; }
+html.light [class*="bg-gym-dark"]      { background-color: #e8e8e8 !important; }
+html.light [class*="bg-gym-gray-light"]{ background-color: #d0d0d0 !important; }
+html.light [class*="bg-gym-gray"]:not([class*="bg-gym-gray-light"]) {
+  background-color: #dcdcdc !important;
+}
+
+html.light [class*="bg-gym-black\/"] {
+  background-color: rgba(240,240,240,0.7) !important;
+}
+html.light [class*="bg-gym-dark\/"] {
+  background-color: rgba(255,255,255,0.8) !important;
+}
+html.light section#home [class*="bg-gym-black\/"] {
+  background-color: unset !important;
+}
+
+/* ---- TEXT COLORS ---- */
+html.light [class*="text-gym-white"] { color: #111111 !important; }
+html.light .section-title  { color: #111111 !important; }
+html.light h1, html.light h2, html.light h3, html.light h4, html.light h5, html.light h6 { color: #111111 !important; }
+html.light .font-heading { color: #111111 !important; }
+html.light .font-display { color: #111111 !important; }
+
+/* Keep white elements white */
+html.light .btn-primary                   { color: #ffffff !important; }
+html.light [class*="bg-gym-red"]:not([class*="hover:bg-gym-red"]) { color: #ffffff !important; }
+html.light [class*="bg-gym-red"]:not([class*="hover:bg-gym-red"]) * { color: #ffffff !important; }
+html.light [class*="bg-red-gradient"]     { color: #ffffff !important; }
+html.light [class*="bg-red-gradient"] *   { color: #ffffff !important; }
+html.light [href*="wa.me"] *              { color: #ffffff !important; }
+html.light .group:hover > [class*="group-hover\:bg-gym-red"] * { color: #ffffff !important; }
+
+/* ---- PLACEHOLDERS ---- */
+html.light ::-webkit-input-placeholder { color: rgba(17,17,17,0.5) !important; }
+html.light ::-moz-placeholder          { color: rgba(17,17,17,0.5) !important; opacity: 1 !important; }
+html.light :-ms-input-placeholder      { color: rgba(17,17,17,0.5) !important; }
+html.light ::placeholder               { color: rgba(17,17,17,0.5) !important; }
+
+/* ---- BORDERS ---- */
+html.light [class*="border-white"]     { border-color: rgba(0,0,0,0.12) !important; }
+html.light [class*="border-gym-gray"]  { border-color: rgba(0,0,0,0.14) !important; }
+html.light [class*="border-gym-white"] { border-color: rgba(0,0,0,0.14) !important; }
+html.light .border-t { border-color: rgba(0,0,0,0.1) !important; }
+
+/* ---- GLASS ---- */
+html.light .glass {
+  background: rgba(255,255,255,0.75) !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+}
+html.light .gradient-border-card > div { background: #e8e8e8 !important; }
+
+/* ---- HEADER / NAVBAR ---- */
+html.light header { background-color: rgba(255,255,255,0.95) !important; }
+html.light header a,
+html.light header nav a { color: #111111 !important; }
+html.light header nav a:hover { color: #e0102b !important; }
+html.light [class*="bg-gym-dark"].fixed { background-color: #ffffff !important; }
+
+/* ---- BUTTONS ---- */
+html.light .btn-outline { border-color: rgba(0,0,0,0.25) !important; color: #111111 !important; }
+html.light .btn-outline:hover { border-color: #e0102b !important; color: #e0102b !important; }
+
+/* ---- GALLERY IMAGES ---- */
+html.light .grayscale-\\[20\\%\\] { filter: none !important; }
+html.light .grayscale-\\[30\\%\\] { filter: none !important; }
+
+/* ---- PRICING CARDS ---- */
+html.light .gradient-border-card {
+  background: linear-gradient(135deg, rgba(224,16,43,0.3), rgba(0,0,0,0.02) 40%, rgba(224,16,43,0.1));
+}
+
+html.light button.z-50 span.bg-gym-white { background-color: #111111 !important; }
