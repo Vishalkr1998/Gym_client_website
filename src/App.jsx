@@ -140,7 +140,6 @@ function AppShell({ children }) {
   return (
     <>
       <LoadingScreen visible={loading} />
-      <CustomCursor />
       <ScrollProgressBar />
       <Navbar />
       <main>{children}</main>

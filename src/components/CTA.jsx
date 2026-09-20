@@ -49,7 +49,7 @@ export default function CTA() {
               <HiPhone />
             </div>
             <div>
-              <p className="text-gym-white font-bold text-sm">+91 98765 43210</p>
+              <p className="text-gym-white font-bold text-sm">+91 767781 9449</p>
               <p className="text-gym-white/50 text-xs">Call us anytime</p>
             </div>
           </div>
@@ -59,7 +59,7 @@ export default function CTA() {
               <HiMail />
             </div>
             <div>
-              <p className="text-gym-white font-bold text-sm">info@ironforge.com</p>
+              <p className="text-gym-white font-bold text-sm">hr@ironforge.com</p>
               <p className="text-gym-white/50 text-xs">Drop us a message</p>
             </div>
           </div>

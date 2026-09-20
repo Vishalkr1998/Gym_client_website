@@ -49,14 +49,15 @@ export default function Contact() {
               'Accept': 'application/json'
           },
           body: JSON.stringify({
-              "Athlete Name": form.name,
-              "Phone Number": form.phone,
-              "Email Address": form.email,
-              "Interested In": form.interest || 'Not Specified',
-              "Message": form.message,
+              name: form.name,
+              phone: form.phone,
+              email: form.email,
+              interest: form.interest || 'Not Specified',
+              message: form.message,
               _subject: `New Inquiry from ${form.name} | Ironforge Gym`,
-              _autoresponse: `Hi ${form.name},\n\nThank you for reaching out to Ironforge Gym!\n\nWe have received your query regarding ${form.interest || 'our services'}. Our expert team will review your message and contact you as soon as possible with all the information you need.\n\nKeep pushing, NO PAIN NO GAIN!\n\nBest Regards,\nTeam Ironforge\n📞 +91 98765 43210\n📍 Connaught Place, New Delhi`,
-              _template: 'table'
+              _autoresponse: `Hi ${form.name},<br><br>Thank you for reaching out to Ironforge Gym! We have received your query regarding ${form.interest || 'our services'}.<br><br>Our expert team will review your message and contact you as soon as possible with all the information you need.<br><br>Keep pushing, NO PAIN NO GAIN!<br><br>Best Regards,<br>Team Ironforge<br>Phone: +91 767781 9449`,
+              _template: 'box',
+              _captcha: 'false'
           })
         })
 
@@ -105,7 +106,7 @@ export default function Contact() {
               <HiPhone className="text-gym-red group-hover:text-white text-3xl transition-colors" />
             </div>
             <h3 className="text-gym-white font-heading text-xl uppercase tracking-wider mb-2">Phone</h3>
-            <p className="text-gym-white/60 text-sm">+91 98765 43210<br/>Mon-Sun, 5:30 AM - 10:00 PM</p>
+            <p className="text-gym-white/60 text-sm">+91 767781 9449<br/>Mon-Sun, 5:30 AM - 10:00 PM</p>
           </div>
 
           <div className="bg-gym-dark border border-white/5 p-8 rounded-2xl text-center group hover:border-gym-red/50 transition-colors cursor-hover">
